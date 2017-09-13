@@ -25,7 +25,7 @@ public class NiceWeatherOpenHelper extends SQLiteOpenHelper {
     public static final String CREATE_CITY = "create table City(" +
             "id integer primary key autoincrement," +
             "city_name text," +
-            "city_code text" +
+            "city_code text," +
             "province_id integer)";
 
     /**
@@ -36,7 +36,7 @@ public class NiceWeatherOpenHelper extends SQLiteOpenHelper {
             "id integer primary key autoincrement," +
             "county_name text," +
             "county_code text," +
-            "city_id integer";
+            "city_id integer)";
 
     public NiceWeatherOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

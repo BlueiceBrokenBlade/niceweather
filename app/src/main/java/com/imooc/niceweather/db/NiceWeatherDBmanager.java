@@ -18,7 +18,7 @@ import java.util.List;
 
 public class NiceWeatherDBmanager {
 
-    public static final String DB_NAME = "";
+    public static final String DB_NAME = "nice_weather";
 
     public static final int VERSION = 1;
 
@@ -35,13 +35,9 @@ public class NiceWeatherDBmanager {
      * 单例模式获取NiceWeatherDBmanager实例
      * @return
      */
-    public static NiceWeatherDBmanager getInstance(Context context){
+    public synchronized static NiceWeatherDBmanager getInstance(Context context){
         if(dBmanager == null){
-            synchronized (NiceWeatherDBmanager.class){
-                if(dBmanager == null){
-                    dBmanager = new NiceWeatherDBmanager(context);
-                }
-            }
+            dBmanager = new NiceWeatherDBmanager(context);
         }
         return dBmanager;
     }
@@ -121,7 +117,7 @@ public class NiceWeatherDBmanager {
      */
     public List<County> loadCounty(int cityId){
         List<County> list = new ArrayList<County>();
-        Cursor cursor = db.rawQuery("select * from County",new String[]{
+        Cursor cursor = db.rawQuery("select * from County where city_id = ?",new String[]{
                 String.valueOf(cityId)});
         while(cursor.moveToNext()){
             County county = new County();
