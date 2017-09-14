@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.imooc.niceweather.R;
+import com.imooc.niceweather.service.AutoUpdateService;
 import com.imooc.niceweather.util.HttpCallbackListener;
 import com.imooc.niceweather.util.HttpUtil;
 import com.imooc.niceweather.util.Utility;
@@ -45,7 +46,6 @@ public class WeatherActivity extends Activity implements View.OnClickListener{
             showWeather();
         }
 
-
     }
 
     /**
@@ -60,6 +60,9 @@ public class WeatherActivity extends Activity implements View.OnClickListener{
         mTextPublishTime.setText(sdf.getString("publish_time", "") + "发布");
         mTextCurrentTime.setText(sdf.getString("current_time", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
+        //激活定时服务后台更新天气
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
     /**
