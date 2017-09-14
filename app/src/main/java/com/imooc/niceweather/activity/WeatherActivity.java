@@ -1,6 +1,7 @@
 package com.imooc.niceweather.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,7 +15,7 @@ import com.imooc.niceweather.util.HttpCallbackListener;
 import com.imooc.niceweather.util.HttpUtil;
 import com.imooc.niceweather.util.Utility;
 
-public class WeatherActivity extends Activity {
+public class WeatherActivity extends Activity implements View.OnClickListener{
 
     private LinearLayout weatherInfoLayout;
     private TextView mTextCityName;
@@ -133,7 +134,33 @@ public class WeatherActivity extends Activity {
         mTextTemp1 = (TextView) findViewById(R.id.text_temp1);
         mTextTemp2 = (TextView) findViewById(R.id.text_temp2);
         mTextCurrentTime = (TextView) findViewById(R.id.text_current_data);
-//        mBtnSwitchCity = findViewById(R.id.)
+        mBtnSwitchCity = (Button) findViewById(R.id.btn_switch_city);
+        mBtnSwitchCity.setOnClickListener(this);
+        mBtnRefreshWeather = (Button) findViewById(R.id.btn_refresh_weather);
+        mBtnRefreshWeather.setOnClickListener(this);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_switch_city:
+                Intent intent = new Intent(this, ChooseAreaActivity.class);
+                intent.putExtra("from_weather_activity", true);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.btn_refresh_weather:
+                mTextPublishTime.setText("正在同步");
+                //重新获得县的ID，重新从服务器解析天气信息并刷新SharedPreferences文件中
+                SharedPreferences prefs = getSharedPreferences("weatherInfo", MODE_PRIVATE);
+                String weatherCode = prefs.getString("weather_code", "");
+                if(!TextUtils.isEmpty(weatherCode)){
+                    queryWeatherInfo(weatherCode);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

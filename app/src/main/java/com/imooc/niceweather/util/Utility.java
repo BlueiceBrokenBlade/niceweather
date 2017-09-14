@@ -138,7 +138,7 @@ public class Utility {
         SharedPreferences.Editor editor = context.getSharedPreferences("weatherInfo", MODE_PRIVATE).edit();
         editor.putBoolean("city_selected", true);
         editor.putString("city_name", cityName);
-        editor.putString("weather_Code", weatherCode);
+        editor.putString("weather_code", weatherCode);
         editor.putString("temp1", temp1);
         editor.putString("temp2", temp2);
         editor.putString("weather_desp", weatherDesp);

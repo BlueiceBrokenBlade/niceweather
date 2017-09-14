@@ -9,6 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
+        <Button
+            android:id="@+id/btn_switch_city"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/switc_city2"/>
+
         <TextView
             android:id="@+id/text_city"
             android:layout_centerInParent="true"
@@ -16,6 +24,14 @@
             android:text="北京"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_refresh_weather"
+            android:background="@drawable/refresh_weather"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
     </RelativeLayout>
 
     <RelativeLayout
