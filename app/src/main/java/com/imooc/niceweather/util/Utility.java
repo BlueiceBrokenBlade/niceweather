@@ -1,11 +1,17 @@
 package com.imooc.niceweather.util;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
-
 import com.imooc.niceweather.db.NiceWeatherDBmanager;
 import com.imooc.niceweather.model.City;
 import com.imooc.niceweather.model.County;
 import com.imooc.niceweather.model.Province;
+import org.json.JSONObject;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * 解析处理服务器返回的省市县数据
@@ -67,6 +73,13 @@ public class Utility {
         return false;
     }
 
+    /**
+     * 解析处理服务器返回的县级数据
+     * @param niceWeatherDBmanager
+     * @param response
+     * @param cityId
+     * @return
+     */
     public static boolean handleCountiesResponse(NiceWeatherDBmanager niceWeatherDBmanager,
                                                  String response, int cityId){
         if(!TextUtils.isEmpty(response)){
@@ -86,4 +99,53 @@ public class Utility {
         }
         return false;
     }
+
+    /**
+     * 解析服务器返回的JSON格式天气数据，并将其通过SharedPreferences存储在本地
+     * @param context
+     * @param response
+     */
+    public static void handleWeatherResponse(Context context, String response){
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONObject weatherInfo = jsonObject.getJSONObject("weatherinfo");
+            String cityName = weatherInfo.getString("city");
+            String weatherCode = weatherInfo.getString("cityid");
+            String temp1 = weatherInfo.getString("temp1");
+            String temp2 = weatherInfo.getString("temp2");
+            String weatherDesp = weatherInfo.getString("weather");
+            String publishTime = weatherInfo.getString("ptime");
+            saveWeatherInfo(context, cityName, weatherCode, temp1, temp2, weatherDesp,
+                    publishTime);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 将服务器返回的天气数据存储在SharedPreferences文件中
+     * @param context
+     * @param cityName
+     * @param weatherCode
+     * @param temp1
+     * @param temp2
+     * @param weatherDesp
+     * @param publishTime
+     */
+    private static void saveWeatherInfo(Context context, String cityName, String weatherCode,
+                                        String temp1, String temp2, String weatherDesp, String publishTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年M月d日", Locale.CHINA);
+        SharedPreferences.Editor editor = context.getSharedPreferences("weatherInfo", MODE_PRIVATE).edit();
+        editor.putBoolean("city_selected", true);
+        editor.putString("city_name", cityName);
+        editor.putString("weather_Code", weatherCode);
+        editor.putString("temp1", temp1);
+        editor.putString("temp2", temp2);
+        editor.putString("weather_desp", weatherDesp);
+        editor.putString("publish_time", publishTime);
+        editor.putString("current_time", sdf.format(new Date()));
+        editor.commit();
+    }
+
+
 }

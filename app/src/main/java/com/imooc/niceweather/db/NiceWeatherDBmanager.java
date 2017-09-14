@@ -64,6 +64,7 @@ public class NiceWeatherDBmanager {
             Province province = new Province();
             province.setProvinceName(cursor.getString(cursor.getColumnIndex("province_name")));
             province.setProvinceCode(cursor.getString(cursor.getColumnIndex("province_code")));
+            province.setId(cursor.getInt(cursor.getColumnIndex("id")));
             list.add(province);
         }
         return list;
@@ -93,6 +94,7 @@ public class NiceWeatherDBmanager {
             City city = new City();
             city.setCityName(cursor.getString(cursor.getColumnIndex("city_name")));
             city.setCityCode(cursor.getString(cursor.getColumnIndex("city_code")));
+            city.setId(cursor.getInt(cursor.getColumnIndex("id")));
             city.setProvinceId(cursor.getInt(cursor.getColumnIndex("province_id")));
             list.add(city);
         }

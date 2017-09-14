@@ -32,6 +32,7 @@ public class HttpUtil {
                     String line;
                     while((line = reader.readLine()) != null){
                         respose.append(line);
+                        MyLog.d("从服务器请求回来的数据：",respose.toString());
                     }
                     if(listener != null){
                         //回调onFinish（）方法
