@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.SystemClock;
 
+import com.imooc.niceweather.model.Constant;
 import com.imooc.niceweather.receiver.AutoUpdateReceiver;
 import com.imooc.niceweather.util.HttpCallbackListener;
 import com.imooc.niceweather.util.HttpUtil;
@@ -29,7 +30,7 @@ public class AutoUpdateService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                MyLog.e("AutoUpdateService:","测试每5秒更新一次天气");
+//                MyLog.e("AutoUpdateService:","测试每5秒更新一次天气");
                 updateWeather();
             }
         }).start();
@@ -48,8 +49,8 @@ public class AutoUpdateService extends Service {
      */
     private void updateWeather(){
         SharedPreferences prefs = getSharedPreferences("weatherInfo", MODE_PRIVATE);
-        String weatherCode = prefs.getString("weather_code", "");
-        String address = "http://www.weather.com.cn/data/cityinfo/" + weatherCode + ".html";
+        String countyName = prefs.getString("city", "");
+        String address = Constant.API_URL+countyName;
         HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
             @Override
             public void onFinish(String respose) {
