@@ -1,6 +1,7 @@
 package com.imooc.niceweather.model;
 
 /**
+ * 常量类
  * Created by xhx12366 on 2017-09-20.
  */
 

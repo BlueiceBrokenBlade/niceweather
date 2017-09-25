@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/weather_lei"
+    android:orientation="vertical">
+
+    <!-- 标题栏 -->
+    <include layout="@layout/main_layout_title"/>
+
+    <!-- ViewPager -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- 底部切换 -->
+    <include layout="@layout/main_layout_switch"/>
+</LinearLayout>

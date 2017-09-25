@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_weatherInfo"
+    android:orientation="vertical">
+
+    <!-- 今日天气信息 -->
+    <include layout="@layout/weather_layout_today"/>
+
+    <!-- 友情提示 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/image_notice"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/btn_notice"
+            android:layout_width="65dp"
+            android:layout_height="55dp" />
+
+        <TextView
+            android:id="@+id/text_notice"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:text="悠悠的云里有淡淡的诗"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- 天气预报布局 -->
+    <include android:id="@+id/layout_weather_forecast" layout="@layout/weather_layout_forecast"/>
+
+</LinearLayout>

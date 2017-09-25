@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="weatherback">#31b8de</color>
+    <color name="switchBack">#e7dede</color>
+    <color name="white">#FFFFFF</color>
+    <color name="green">#18e122</color>
 </resources>

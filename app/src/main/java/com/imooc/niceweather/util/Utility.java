@@ -22,6 +22,9 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class Utility {
+    public static final int TYPE_DATE = 0;
+    public static final int TYPE_WENDU = 1;
+
 
     /**
      * 解析和处理服务器返回的省级数据
@@ -281,19 +284,20 @@ public class Utility {
                                         String forecastThreeday_fx, String forecastThreeday_fl, String forecastThreeday_type, String forecastThreeday_notice) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.CHINA);
         SharedPreferences.Editor editor = context.getSharedPreferences("weatherInfo", MODE_PRIVATE).edit();
+        editor.putBoolean("city_selected", true);
         editor.putString("city", city);
         editor.putString("shidu", shidu);
         editor.putInt("pm25", pm25);
         editor.putInt("pm10", pm10);
         editor.putString("quality", quality);
-        editor.putString("wendu", wendu);
+        editor.putString("wendu", wendu+"℃");
         editor.putString("ganmao", ganmao);
 
         editor.putString("yesterday_date", yesterday_date);
 //        editor.putString("yesterday_sunrise", yesterday_sunrise);
 //        editor.putString("yesterday_sunset", yesterday_sunset);
-        editor.putString("yesterday_high", yesterday_high.split("\\s")[1]);
-        editor.putString("yesterday_low", yesterday_low.split("\\s")[1]);
+        editor.putString("yesterday_high", handleDataByType(yesterday_high, TYPE_WENDU));
+        editor.putString("yesterday_low", handleDataByType(yesterday_low, TYPE_WENDU));
 //        editor.putInt("yesterday_aqi", yesterday_aqi);
 //        editor.putString("yesterday_fx", yesterday_fx);
 //        editor.putString("yesterday_fl", yesterday_fl);
@@ -303,8 +307,8 @@ public class Utility {
         editor.putString("today_date", sdf.format(new Date()));
 //        editor.putString("today_sunrise", today_sunrise);
 //        editor.putString("today_sunset", today_sunset);
-        editor.putString("today_high", today_high.split("\\s")[1]);
-        editor.putString("today_low", today_low.split("\\s")[1]);
+        editor.putString("today_high", handleDataByType(today_high, TYPE_WENDU));
+        editor.putString("today_low", handleDataByType(today_low, TYPE_WENDU));
         editor.putInt("today_aqi", today_aqi);
         editor.putString("today_fx", today_fx);
         editor.putString("today_fl", today_fl);
@@ -314,8 +318,8 @@ public class Utility {
         editor.putString("forecastOneday_date", forecastOneday_date);
 //        editor.putString("forecastOneday_sunrise", forecastOneday_sunrise);
 //        editor.putString("forecastOneday_sunset", forecastOneday_sunset);
-        editor.putString("forecastOneday_high", forecastOneday_high.split("\\s")[1]);
-        editor.putString("forecastOneday_low", forecastOneday_low.split("\\s")[1]);
+        editor.putString("forecastOneday_high", handleDataByType(forecastOneday_high, TYPE_WENDU));
+        editor.putString("forecastOneday_low", handleDataByType(forecastOneday_low, TYPE_WENDU));
         editor.putInt("forecastOneday_aqi", forecastOneday_aqi);
 //        editor.putString("forecastOneday_fx", forecastOneday_fx);
 //        editor.putString("forecastOneday_fl", forecastOneday_fl);
@@ -325,8 +329,8 @@ public class Utility {
         editor.putString("forecastTwoday_date", forecastTwoday_date);
 //        editor.putString("forecastTwoday_sunrise", forecastTwoday_sunrise);
 //        editor.putString("forecastTwoday_sunset", forecastTwoday_sunset);
-        editor.putString("forecastTwoday_high", forecastTwoday_high.split("\\s")[1]);
-        editor.putString("forecastTwoday_low", forecastTwoday_low.split("\\s")[1]);
+        editor.putString("forecastTwoday_high", handleDataByType(forecastTwoday_high, TYPE_WENDU));
+        editor.putString("forecastTwoday_low", handleDataByType(forecastTwoday_low, TYPE_WENDU));
 //        editor.putInt("forecastTwoday_aqi", forecastTwoday_aqi);
 //        editor.putString("forecastTwoday_fx", forecastTwoday_fx);
 //        editor.putString("forecastTwoday_fl", forecastTwoday_fl);
@@ -336,8 +340,8 @@ public class Utility {
         editor.putString("forecastThreeday_date", forecastThreeday_date);
 //        editor.putString("forecastThreeday_sunrise", forecastThreeday_sunrise);
 //        editor.putString("forecastThreeday_sunset", forecastThreeday_sunset);
-        editor.putString("forecastThreeday_high", forecastThreeday_high.split("\\s")[1]);
-        editor.putString("forecastThreeday_low", forecastThreeday_low.split("\\s")[1]);
+        editor.putString("forecastThreeday_high", handleDataByType(forecastThreeday_high, TYPE_WENDU));
+        editor.putString("forecastThreeday_low", handleDataByType(forecastThreeday_low, TYPE_WENDU));
 //        editor.putInt("forecastThreeday_aqi", forecastThreeday_aqi);
 //        editor.putString("forecastThreeday_fx", forecastThreeday_fx);
 //        editor.putString("forecastThreeday_fl", forecastThreeday_fl);
@@ -345,5 +349,23 @@ public class Utility {
 //        editor.putString("forecastThreeday_notice", forecastThreeday_notice);
 
         editor.commit();
+    }
+
+
+    /**
+     * 通过类型处理相应天气数据
+     * @param data
+     * @param type
+     * @return
+     */
+    private static String handleDataByType(String data, int type){
+        String wendu;
+        if(type == TYPE_WENDU){
+            wendu = data.split("\\s")[1];//由“高温 28.0℃”————>“28.0℃”
+            return wendu.split("\\.")[0];//由“28.0℃”——————>"28"
+        }else if(type == TYPE_DATE){
+
+        }
+        return null;
     }
 }

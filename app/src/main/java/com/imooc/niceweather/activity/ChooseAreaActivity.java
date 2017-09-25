@@ -61,7 +61,8 @@ public class ChooseAreaActivity extends Activity {
         //判断城市选择标志位，决定是否直接跳到天气界面
         SharedPreferences prefs = getSharedPreferences("weatherInfo", MODE_PRIVATE);
         if(prefs.getBoolean("city_selected", false) && !isFromWeatherActivity){
-            Intent intent = new Intent(this, WeatherActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("from_choose_activity", false);
             startActivity(intent);
             finish();
             return;
@@ -86,8 +87,9 @@ public class ChooseAreaActivity extends Activity {
                     queryCounties();
                 } else if(currentLevel == LEVEL_COUNTY){
                     String countyName = countyList.get(position).getCountyName();
-                    Intent intent = new Intent(ChooseAreaActivity.this, WeatherActivity.class);
+                    Intent intent = new Intent(ChooseAreaActivity.this, MainActivity.class);
                     intent.putExtra("county_name", countyName);
+                    intent.putExtra("from_choose_activity", true);
                     startActivity(intent);
                     finish();
                 }

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">好天气</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="switch_one">天气</string>
+    <string name="switch_two">资讯</string>
+    <string name="switch_three">设置</string>
 </resources>

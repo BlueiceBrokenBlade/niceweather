@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="80dp"
     android:orientation="horizontal">
 
     <RelativeLayout
         android:id="@+id/t1"
         android:layout_weight="1"
         android:layout_width="0dp"
+        android:gravity="center"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/layout_switch_one"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
-                android:background="@drawable/weather_lei"
+                android:background="@drawable/switch1"
                 android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_height="35dp" />
 
             <TextView
-                android:text="天气"
+                android:id="@+id/text_switch_weather"
+                android:text="@string/switch_one"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -33,21 +38,26 @@
         android:id="@+id/t2"
         android:layout_weight="1"
         android:layout_width="0dp"
+        android:gravity="center"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/layout_switch_two"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
-                android:background="@drawable/weather_lei"
+                android:background="@drawable/switch2"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
 
             <TextView
-                android:text="其他"
+                android:id="@+id/text_switch_zixun"
+                android:text="@string/switch_two"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -58,21 +68,26 @@
         android:id="@+id/t3"
         android:layout_weight="1"
         android:layout_width="0dp"
+        android:gravity="center"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/layout_switch_three"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
-                android:background="@drawable/weather_lei"
+                android:background="@drawable/switch3"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
 
             <TextView
-                android:text="设置"
+                android:id="@+id/text_switch_set"
+                android:text="@string/switch_three"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

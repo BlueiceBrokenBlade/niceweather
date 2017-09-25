@@ -14,13 +14,10 @@ import android.widget.TextView;
 
 import com.imooc.niceweather.R;
 import com.imooc.niceweather.model.Constant;
-import com.imooc.niceweather.service.AutoUpdateService;
 import com.imooc.niceweather.util.HttpCallbackListener;
 import com.imooc.niceweather.util.HttpUtil;
 import com.imooc.niceweather.util.MyLog;
 import com.imooc.niceweather.util.Utility;
-
-import java.io.UnsupportedEncodingException;
 
 public class WeatherActivity extends Activity implements View.OnClickListener{
 
@@ -76,7 +73,7 @@ public class WeatherActivity extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.weather_layout);
+        setContentView(R.layout.fragment_weather);
 
         initView();
         String countyName = getIntent().getStringExtra("county_name");
@@ -180,11 +177,10 @@ public class WeatherActivity extends Activity implements View.OnClickListener{
         mBtnSwitchCity.setOnClickListener(this);
 
         weatherInfoLayout = (LinearLayout) findViewById(R.id.layout_weatherInfo);
-        forecastLayout = (LinearLayout) findViewById(R.id.layout_forecast);
-        switchLayout = (LinearLayout) findViewById(R.id.layout_switchFunctioin);
+//        forecastLayout = (LinearLayout) findViewById(R.id.layout_forecast);
+//        switchLayout = (LinearLayout) findViewById(R.id.layout_switchFunctioin);
 
         mTextDate = (TextView) findViewById(R.id.text_date);
-        mTextCityName = (TextView) findViewById(R.id.text_cityName);
         mTextWendu = (TextView) findViewById(R.id.text_wendu);
         mTextMinWendu = (TextView) findViewById(R.id.text_wendu_min);
         mTextMaxWendu = (TextView) findViewById(R.id.text_wendu_max);
