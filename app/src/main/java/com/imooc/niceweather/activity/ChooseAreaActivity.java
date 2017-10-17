@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.imooc.niceweather.R;
+import com.imooc.niceweather.activity.fragment.WeatherFragment;
 import com.imooc.niceweather.db.NiceWeatherDBmanager;
 import com.imooc.niceweather.model.City;
 import com.imooc.niceweather.model.County;
@@ -246,7 +247,7 @@ public class ChooseAreaActivity extends Activity {
             queryProvinces();
         } else {
             if(isFromWeatherActivity){
-                Intent intent = new Intent(this, WeatherActivity.class);
+                Intent intent = new Intent(this, WeatherFragment.class);
                 startActivity(intent);
             }
             finish();

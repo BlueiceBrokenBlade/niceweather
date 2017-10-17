@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="notification_text_color_choose">
+        <item>默认</item>
+        <item>红色</item>
+        <item>绿色</item>
+        <item>黄色</item>
+    </string-array>
+</resources>

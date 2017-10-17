@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.imooc.niceweather.R;
 import com.imooc.niceweather.model.Constant;
 import com.imooc.niceweather.util.HttpCallbackListener;
@@ -23,6 +22,7 @@ import com.imooc.niceweather.util.Utility;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
+ * 天气界面
  * A simple {@link Fragment} subclass.
  */
 public class WeatherFragment extends Fragment implements View.OnClickListener{
@@ -81,8 +81,9 @@ public class WeatherFragment extends Fragment implements View.OnClickListener{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         /**
-         * 因为fragment重新创建时，调用onCreateView(),onStart(),onResume()
-         * 因此只需初始化一次的，放在onCreate()
+         * 当页面滑动到第三fragment，第一fragment调用onPause(),onStop(),onDestroyView
+         * 当第一fragment重新加载时，调用onCreateView(),onStart(),onResume()
+         * 因此只需初始化一次的，放在onCreate()，此处传递参数作用防止切换页面重复查询服务器
          */
         countyName = getArguments().getString("couty_name");
         isFromChooseActivity = getArguments().getBoolean("from_choose_activity");

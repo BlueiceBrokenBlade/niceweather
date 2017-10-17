@@ -6,7 +6,9 @@
     android:orientation="vertical">
 
     <!-- 标题栏 -->
-    <include layout="@layout/main_layout_title"/>
+    <include
+        android:id="@+id/layout_title"
+        layout="@layout/main_layout_title"/>
 
     <!-- ViewPager -->
     <android.support.v4.view.ViewPager

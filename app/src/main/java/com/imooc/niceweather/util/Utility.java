@@ -2,7 +2,11 @@ package com.imooc.niceweather.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.text.TextUtils;
+import android.view.Display;
+import android.view.WindowManager;
+
 import com.imooc.niceweather.db.NiceWeatherDBmanager;
 import com.imooc.niceweather.model.City;
 import com.imooc.niceweather.model.County;
@@ -24,6 +28,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class Utility {
     public static final int TYPE_DATE = 0;
     public static final int TYPE_WENDU = 1;
+    public static final int WINDOWS_WIDTH = 0;
+    public static final int WINDOWS_HEIGHT = 1;
 
 
     /**
@@ -367,5 +373,38 @@ public class Utility {
 
         }
         return null;
+    }
+
+
+    /**
+     * 通过传入参数获取屏幕宽或者高
+     * @param context
+     * @param type
+     * @return
+     */
+    public static int getWindowDimension(Context context, Integer type){
+        WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = manager.getDefaultDisplay();
+        Point point = new Point();
+        display.getSize(point);
+        if(type == WINDOWS_WIDTH){
+            return point.x;
+        }else if(type == WINDOWS_HEIGHT){
+            return point.y;
+        }else{
+            return 0;
+        }
+    }
+
+    /**
+     * 退出登录，将sharedPreferences中存储的登录用户信息置为空
+     */
+    public static void exitLogin(Context context){
+        SharedPreferences sp = context.getSharedPreferences("UserInfo", MODE_PRIVATE);
+        SharedPreferences.Editor editor= sp.edit();
+        editor.putString("UserName","");
+        editor.putString("UserPassword","");
+        editor.putBoolean("isLogin", false);
+        editor.commit();
     }
 }

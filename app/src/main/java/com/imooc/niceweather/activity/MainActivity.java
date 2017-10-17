@@ -7,23 +7,26 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.imooc.niceweather.R;
-import com.imooc.niceweather.activity.fragment.OtherFragment;
+import com.imooc.niceweather.activity.fragment.NewsFragment;
 import com.imooc.niceweather.activity.fragment.SetFragment;
 import com.imooc.niceweather.activity.fragment.WeatherFragment;
 import com.imooc.niceweather.adpter.MyFragmentPagerAdapter;
+import com.imooc.niceweather.util.Utility;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener{
 
+    private RelativeLayout mLayoutTitle;
     private ViewPager viewPager;
     private List<Fragment> mfragmentList;
     private MyFragmentPagerAdapter mfragmentPagerAdapter;
@@ -50,7 +53,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         mfragmentList = new ArrayList<Fragment>();
         mfragmentList.add(weatherFragment);
-        mfragmentList.add(new OtherFragment());
+        mfragmentList.add(new NewsFragment());
         mfragmentList.add(new SetFragment());
         mfragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), mfragmentList);
         viewPager.setAdapter(mfragmentPagerAdapter);
@@ -70,12 +73,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 switch (position){
                     case SWITCH_WEATHER:
                         mTextSwitchWeather.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.green));
+                        mLayoutTitle.setVisibility(View.VISIBLE);
                         break;
                     case SWITCH_ZIXUN:
                         mTextSwitchZixu.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.green));
+                        mLayoutTitle.setVisibility(View.GONE) ;
                         break;
                     case SWITCH_SET:
                         mTextSwitchSet.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.green));
+                        mLayoutTitle.setVisibility(View.GONE);
                         break;
                 }
 
@@ -104,6 +110,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
      * 初始化控件
      */
     private void initView() {
+        mLayoutTitle = (RelativeLayout) findViewById(R.id.layout_title);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         mTextCountyName = (TextView) findViewById(R.id.text_CountyName);
         mTextDate = (TextView) findViewById(R.id.text_date);
@@ -120,6 +127,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         mLayoutSwitchOne.setOnClickListener(this);
         mLayoutSwitchTwo.setOnClickListener(this);
         mLayoutSwitchThree.setOnClickListener(this);
+
+
 
         weatherFragment = new WeatherFragment();
     }

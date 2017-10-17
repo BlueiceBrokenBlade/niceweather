@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:background="@drawable/titile_back"
+        android:background="@drawable/title_back"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 

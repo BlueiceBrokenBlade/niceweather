@@ -7,4 +7,14 @@
     <color name="switchBack">#e7dede</color>
     <color name="white">#FFFFFF</color>
     <color name="green">#18e122</color>
+    <color name="title_back">#e4e2e2</color>
+    <color name="hui">#bfbcbc</color>
+    <color name="color_theme">#489cfa</color>
+    <color name="msgGray">#A8A8A8</color>
+    <color name="theme_bg_color">#f0f2f5</color>
+    <color name="transparent">#00000000</color>
+    <color name="notification_default">#ded8d8</color>
+    <color name="notification_red">#ba3939</color>
+    <color name="notification_green">#18e122</color>
+    <color name="notification_yellow">#e49534</color>
 </resources>
